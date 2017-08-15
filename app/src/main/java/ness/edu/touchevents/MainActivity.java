@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     //detector = new Detector(listener -> logged some data)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(new HatView(this/*context*/));
 
         detector = new GestureDetectorCompat(
                 this /*context*/,
@@ -80,4 +80,8 @@ public class MainActivity extends AppCompatActivity {
         //        super.onTouchEvent(e);
         return detector.onTouchEvent(e);
     }
+}
+
+class A{
+
 }

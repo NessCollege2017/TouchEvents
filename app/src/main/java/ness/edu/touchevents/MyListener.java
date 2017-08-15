@@ -1,5 +1,6 @@
 package ness.edu.touchevents;
 
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 
@@ -8,17 +9,34 @@ import android.view.MotionEvent;
  */
 
 public class MyListener extends GestureDetector.SimpleOnGestureListener{
-    @Override
-    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        return super.onScroll(e1, e2, distanceX, distanceY);
-    }
+    private static final String TAG = "Ness";
 
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        return onSwipe(e1, e2, velocityX, velocityY);
-    }
+        float x1 = e1.getX();
+        float x2 = e2.getX();
 
-    public boolean onSwipe(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        float y1 = e1.getY();
+        float y2 = e2.getY();
+
+        float dx = x2 - x1;
+        float dy = y2 - y1;
+
+        if (Math.abs(dx) > Math.abs(dy)){
+            //Horizontal swipe.
+            if (x2 > x1) /* dx > 0*/{
+                Log.d(TAG, "Swiped Right");
+            }else {
+                Log.d(TAG, "Swiped Left");
+            }
+        }else {
+            //Vertical swipe.
+            if (y2 > y1){
+                Log.d(TAG, "Swiped Down");
+            }else {
+                Log.d(TAG, "Swiped Up");
+            }
+        }
         return super.onFling(e1, e2, velocityX, velocityY);
     }
 }
