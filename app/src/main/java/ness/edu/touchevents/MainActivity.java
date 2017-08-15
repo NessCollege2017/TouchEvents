@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
                 new GestureDetector.SimpleOnGestureListener(){
                     @Override
                     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+
+                        if (e1 == null || e2 == null)return true;//?
                         float x1 = e1.getX();
                         float x2 = e2.getX();
 
@@ -78,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onTouchEvent(e);
         */
         //        super.onTouchEvent(e);
-        return detector.onTouchEvent(e);
+        return super.onTouchEvent(e);//detector.onTouchEvent(e);
     }
 }
 
